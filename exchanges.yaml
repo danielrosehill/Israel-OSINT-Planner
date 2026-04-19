@@ -1,0 +1,11 @@
+# Research exchange log — auto-maintained, do not edit manually
+exchanges:
+  - id: 1
+    date: "2026-04-19"
+    prompt_path: "prompts/run/initial/2026-04-19-situational-awareness-scope.md"
+    prompt_summary: "Document the exploration ground, parameters, existing tools, and signal taxonomy for a low-noise Israel situational-awareness pipeline."
+    output_path: "outputs/individual/2026-04-19-situational-awareness-scope.md"
+    exchange_in_file: 1
+    thread: "2026-04-19-situational-awareness-scope"
+    tools_used:
+      - reasoning
