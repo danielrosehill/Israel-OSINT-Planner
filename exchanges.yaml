@@ -1,11 +1,39 @@
 # Research exchange log — auto-maintained, do not edit manually
+# Raw prompts are not retained in this public repo; prompt_summary below
+# is the canonical record of each question asked.
 exchanges:
   - id: 1
     date: "2026-04-19"
-    prompt_path: "prompts/run/initial/2026-04-19-situational-awareness-scope.md"
     prompt_summary: "Document the exploration ground, parameters, existing tools, and signal taxonomy for a low-noise Israel situational-awareness pipeline."
     output_path: "outputs/individual/2026-04-19-situational-awareness-scope.md"
     exchange_in_file: 1
     thread: "2026-04-19-situational-awareness-scope"
+    tools_used:
+      - reasoning
+
+  - id: 2
+    date: "2026-04-19"
+    prompt_summary: "Rank sources and specify OSINT cues/keyword/monitoring strategies for a low-noise Israel situational awareness pipeline, accounting for the IDF-censor vs. foreign-speed asymmetry."
+    output_path: "outputs/individual/2026-04-19-source-selection-monitoring.md"
+    exchange_in_file: 1
+    thread: "2026-04-19-source-selection-monitoring"
+    tools_used:
+      - reasoning
+
+  - id: 3
+    date: "2026-04-19"
+    prompt_summary: "Specify delivery mechanics — channels, message formats, thresholds, deduplication, failure modes, and anti-fatigue discipline — for the pipeline."
+    output_path: "outputs/individual/2026-04-19-delivery-mechanics.md"
+    exchange_in_file: 1
+    thread: "2026-04-19-delivery-mechanics"
+    tools_used:
+      - reasoning
+
+  - id: 4
+    date: "2026-04-19"
+    prompt_summary: "Design an always-on pipeline with autonomous frequency calibration (up during heightened threat, down on normalization) and guardrails against runaway self-escalation."
+    output_path: "outputs/individual/2026-04-19-adaptive-frequency-implementation.md"
+    exchange_in_file: 1
+    thread: "2026-04-19-adaptive-frequency-implementation"
     tools_used:
       - reasoning

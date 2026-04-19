@@ -11,7 +11,6 @@ exchange_count: 1
 
 ## Exchange 1
 
-**Prompt**: prompts/run/initial/2026-04-19-situational-awareness-scope.md
 **Summary**: Document the problem space, parameters, existing tools, and signal taxonomy for a low-noise situational awareness pipeline focused on Israel's active and latent conflict fronts.
 
 ### Key Findings
