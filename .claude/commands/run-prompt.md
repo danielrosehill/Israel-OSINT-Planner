@@ -14,6 +14,6 @@ Execute the next research prompt in the workflow.
    - New thread: create `outputs/individual/YYYY-MM-DD-{slug}.md` with full thread frontmatter, AI disclaimer, and Exchange 1.
    - Existing thread: append `## Exchange N` to the active thread file and update `exchange_count` in frontmatter.
 8. If the prompt came from `prompts/queue/`, move it to `prompts/run/initial/` or `prompts/run/subsequent/` as appropriate.
-9. **Log to exchanges.yaml**: append an entry with id, date, prompt_path, prompt_summary, output_path, exchange_in_file, thread slug, and tools_used.
+9. **Log to exchanges.yaml**: append an entry with id, date, prompt_summary (cleaned, typo/voice artifacts resolved — no raw prompt text), output_path, exchange_in_file, thread slug, and tools_used. Do **not** include `prompt_path` for chat-supplied prompts; this repo is public and does not persist raw prompts.
 10. **Same-day consolidation check** (separate files only): if there are now 2+ separate output files from today, remind the user about `/consolidate-day`. Threaded exchanges within a single file don't need consolidation.
 11. Report what was run and a brief summary of findings, including the output path and exchange number.

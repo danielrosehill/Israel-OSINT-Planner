@@ -33,31 +33,34 @@ This requires an AssemblyAI API key in `.env`. See `.env.example` and `publishin
 
 ### Prompts given directly in chat
 
-If the user supplies a research prompt directly in the chat (rather than placing a file in `prompts/queue/`), first persist it before acting on it:
+**This is a public repo. Do NOT persist raw prompts.** Capture only a cleaned summary in `exchanges.yaml` (`prompt_summary` field) and, where useful, a one-line restatement in the output's Exchange heading. The canonical record of "what was asked" is the summary, not a verbatim transcript.
 
-1. Save the prompt to `prompts/run/initial/YYYY-MM-DD-{slug}.md` (or `prompts/run/subsequent/` if it builds on prior outputs), using today's date. **Lightly clean the prompt** before saving — do not paste it verbatim. The goal is to capture the substance of the question(s), not every character the user typed.
-2. Then process it following the normal "Running a prompt" workflow below.
+Rationale:
+- Voice-typing and one-handed-typing artifacts should not leak into a public record.
+- Personal framing, asides, and meta-commentary do not belong in a public research archive.
+- The `prompt_summary` is already the durable, readable, public-safe record.
 
-### Light cleanup rules for persisted prompts
+### Prompt summary rules
 
-Always apply a brief editorial pass before saving:
+When writing the `prompt_summary` (and optional Exchange heading summary):
 
-- Fix obvious typos, mis-segmented words, and voice-typing / one-handed-typing artifacts (homophones, missing spaces, stray characters).
-- Trim filler — "so", "basically", "I was thinking maybe", false starts, mid-sentence restarts, meta-commentary ("ignore the last bit, what I meant was...").
-- Normalize punctuation and paragraph breaks for readability.
-- Preserve the user's **intent, questions, structure, and emphasis**. Do not rewrite, reorder, or add new requirements.
-- Keep it recognizable as the user's own phrasing — this is a light polish, not a rewrite.
+- Resolve typos, mis-segmented words, and voice/one-handed-typing artifacts silently.
+- Capture the **substance** of the question(s) — what was asked, what was to be produced. Strip filler, false starts, and meta-commentary.
+- One to three sentences. Readable standalone.
+- Preserve the user's intent and emphasis; do not add requirements that weren't there.
 
-This guarantees every piece of research in the repo has a corresponding, dated prompt file on disk — and the persisted record is readable rather than a literal transcript.
+### Queue-based prompts (voice notes, explicit queue files)
+
+Prompts that arrive via `prompts/queue/` (e.g., from `/voice-note`) are different — those files already exist on disk as part of the voice-note workflow. Move them to `prompts/run/` after execution as usual. The no-raw-prompts rule applies to chat-supplied prompts specifically.
 
 ### Running a prompt
 
 1. Read all files in `context/` to build background understanding
-2. Read the prompt file from `prompts/run/` (initial or subsequent)
+2. Read the queued prompt file (if applicable) or work from the chat-supplied prompt
 3. Conduct the research using available tools (web search, document analysis, reasoning)
 4. Save the output following the thread-mode rules below
 5. If the prompt file was in `prompts/queue/`, move it to the appropriate `prompts/run/` folder after execution
-6. Log the exchange to `exchanges.yaml` (see Exchange Log below)
+6. Log the exchange to `exchanges.yaml` with a cleaned `prompt_summary` (see Exchange Log below)
 
 ### Building on previous work
 
@@ -93,8 +96,7 @@ exchange_count: N
 
 ## Exchange 1
 
-**Prompt**: prompts/run/initial/YYYY-MM-DD-{slug}.md
-**Summary**: One-sentence restatement.
+**Summary**: One-sentence restatement of what was asked.
 
 ### Key Findings
 
@@ -106,8 +108,7 @@ exchange_count: N
 
 ## Exchange 2
 
-**Prompt**: prompts/run/subsequent/YYYY-MM-DD-{slug-2}.md
-**Summary**: One-sentence restatement.
+**Summary**: One-sentence restatement of what was asked.
 
 ### Key Findings
 
@@ -140,7 +141,6 @@ Every prompt/output exchange is logged to `exchanges.yaml` at the repo root. Thi
 exchanges:
   - id: 1
     date: "2026-04-12"
-    prompt_path: "prompts/run/initial/2026-04-12-example.md"
     prompt_summary: "What are the main approaches to distributed caching?"
     output_path: "outputs/individual/2026-04-12-distributed-caching.md"
     exchange_in_file: 1
@@ -151,7 +151,6 @@ exchanges:
 
   - id: 2
     date: "2026-04-12"
-    prompt_path: "prompts/run/subsequent/2026-04-12-redis-vs-memcached.md"
     prompt_summary: "How does Redis compare to Memcached for session storage?"
     output_path: "outputs/individual/2026-04-12-distributed-caching.md"
     exchange_in_file: 2
@@ -160,14 +159,15 @@ exchanges:
       - web_search
 ```
 
+Note: `prompt_path` is intentionally omitted. Raw chat-supplied prompts are not persisted in this public repo; `prompt_summary` is the canonical record. Prompts that came from `prompts/queue/` (voice-note workflow) may still land in `prompts/run/`, but that is incidental — the summary is still the authoritative record.
+
 ### Fields
 
 | Field | Type | Description |
 |---|---|---|
 | `id` | int | Auto-incrementing, 1-based |
 | `date` | string | ISO date of the exchange |
-| `prompt_path` | string | Path to the persisted prompt file |
-| `prompt_summary` | string | One-sentence restatement |
+| `prompt_summary` | string | Cleaned one-to-three-sentence restatement of what was asked (typos/voice artifacts resolved) |
 | `output_path` | string | Path to the output file (thread file if threaded) |
 | `exchange_in_file` | int | Which exchange number within the output file |
 | `thread` | string | Thread slug — matches the output filename stem |

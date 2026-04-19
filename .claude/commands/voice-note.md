@@ -2,6 +2,8 @@
 
 Transcribe a voice note, clean it into a structured research prompt, and optionally run it.
 
+> **Public-repo note**: `voice-notes/` and `prompts/queue/` are gitignored. Raw transcripts and raw prompt files never reach the public record. When the prompt is executed via `/run-prompt`, only the cleaned `prompt_summary` in `exchanges.yaml` becomes the public record.
+
 ## Arguments
 
 The user may provide a path to an audio file (e.g., `/voice-note ~/Downloads/recording.mp3`). If no path is given, look for the most recent audio file (`.mp3`, `.m4a`, `.wav`, `.ogg`, `.webm`, `.flac`) in the project root directory.

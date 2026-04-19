@@ -37,3 +37,12 @@ exchanges:
     thread: "2026-04-19-adaptive-frequency-implementation"
     tools_used:
       - reasoning
+
+  - id: 5
+    date: "2026-04-19"
+    prompt_summary: "Map OSINT signals to keywords and sources in detail; specify delivery/orchestration architecture (serverless + always-on state, email for long-form SITREPs); bake in conventions for UTC+IDT timestamps, 24h ISO filenames, source bias/credibility ratings, and a SITREP template grounded in Admiralty-code source reliability."
+    output_path: "outputs/individual/2026-04-19-signal-source-mapping-and-conventions.md"
+    exchange_in_file: 1
+    thread: "2026-04-19-signal-source-mapping-and-conventions"
+    tools_used:
+      - reasoning

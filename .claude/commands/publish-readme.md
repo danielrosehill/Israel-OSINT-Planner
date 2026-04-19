@@ -35,7 +35,7 @@ Regenerate the README.md to reflect the current state of the research for extern
 
    ## How to Navigate This Repo
 
-   {Brief guide to the directory structure — where to find outputs, methodology, raw prompts}
+   {Brief guide to the directory structure — where to find outputs, methodology, and the exchange log (raw chat-supplied prompts are NOT retained; `exchanges.yaml` summaries are the canonical record)}
 
    | Directory | What You'll Find |
    |-----------|-----------------|

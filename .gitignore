@@ -6,6 +6,20 @@
 private/*
 !private/.gitkeep
 
+# Raw prompts & transcripts — this is a public repo; prompt_summary in
+# exchanges.yaml is the canonical record. Keep the directories but don't
+# commit their contents (example files are explicitly allowed).
+voice-notes/*
+!voice-notes/.gitkeep
+prompts/queue/*
+!prompts/queue/.gitkeep
+prompts/run/initial/*
+!prompts/run/initial/.gitkeep
+!prompts/run/initial/example-*.md
+prompts/run/subsequent/*
+!prompts/run/subsequent/.gitkeep
+!prompts/run/subsequent/example-*.md
+
 # MCP configuration (contains credentials)
 
 # OS
